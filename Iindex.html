@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Administrativo</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Librería Chart.js desde CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="grid-container">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar" role="navigation">
+      <h2>Mi Sitio</h2>
+      <nav>
+        <ul>
+          <li><a href="#inicio"> Inicio</a></li>
+          <li><a href="#usuarios"> Usuarios</a></li>
+          <li><a href="#ventas"> Ventas</a></li>
+          <li><a href="#inventario"> Inventario</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Header -->
+    <header class="header">
+      <h1>Panel Administrativo Ventas</h1>
+    </header>
+
+    <!-- Main -->
+    <main class="main" role="main">
+
+      <!-- Inicio -->
+      <section id="inicio" class="seccion">
+        <h2>Bienvenido</h2>
+        <div class="cards">
+          <div class="card"><h3>Usuarios</h3><p>1500</p></div>
+          <div class="card"><h3>Ventas</h3><p>$25,000</p></div>
+          <div class="card"><h3>Inventario</h3><p>320 productos</p></div>
+        </div>
+      </section>
+
+      <!-- Usuarios -->
+      <section id="usuarios" class="seccion">
+        <h2>Usuarios</h2>
+        
+        <!-- Resumen -->
+        <div class="cards">
+          <div class="card"><h3>Total Usuarios</h3><p>1,540</p></div>
+          <div class="card"><h3>Activos Hoy</h3><p>320</p></div>
+          <div class="card"><h3>Nuevos este mes</h3><p>45</p></div>
+        </div>
+
+        <!-- Tabla usuarios -->
+        <h3>Lista de Usuarios</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Rol</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Ana López</td><td>ana@example.com</td><td>Administrador</td><td>Activo</td></tr>
+            <tr><td>Carlos Pérez</td><td>carlos@example.com</td><td>Editor</td><td>Activo</td></tr>
+            <tr><td>Laura Méndez</td><td>laura@example.com</td><td>Empleado</td><td> Inactivo</td></tr>
+          </tbody>
+        </table>
+
+        <!-- Botón acción -->
+        <button class="btn"> Agregar Usuario</button>
+      </section>
+
+      <!-- Ventas -->
+      <section id="ventas" class="seccion">
+        <h2>Ventas</h2>
+        <canvas id="ventasChart"></canvas>
+      </section>
+
+      <!-- Inventario -->
+      <section id="inventario" class="seccion">
+        <h2>Inventario</h2>
+        <p>Listado de productos en inventario.</p>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2025 Dashboard Administrativo Ventas - Fabian Caranton</p>
+    </footer>
+  </div>
+
+  <!-- Script del gráfico -->
+  <script>
+    const ctx = document.getElementById('ventasChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+        datasets: [{
+          label: 'Ventas Mensuales ($)',
+          data: [5000, 7000, 8000, 6000, 9000, 12000],
+          borderColor: '#3498db',
+          backgroundColor: 'rgba(52, 152, 219, 0.2)',
+          borderWidth: 2,
+          fill: true,
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: true, position: 'bottom' }
+        },
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
